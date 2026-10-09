@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политехник коллеж | Элсэлтийн бүртгэл</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6fb;
+    color: #263447;
+}
+
+header {
+    background: #123b68;
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ffc857;
+}
+
+.hero {
+    min-height: 400px;
+    padding: 70px 20px;
+    background: linear-gradient(135deg, #123b68, #2674a9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.main-button {
+    display: inline-block;
+    background: #ffc857;
+    color: #123b68;
+    padding: 14px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about,
+.contact {
+    text-align: center;
+    padding: 55px 8%;
+}
+
+.about h2,
+.contact h2 {
+    color: #123b68;
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+.register {
+    padding: 60px 20px;
+    background: #eaf0f8;
+}
+
+.form-box {
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-box h2 {
+    text-align: center;
+    color: #123b68;
+    margin-bottom: 12px;
+}
+
+.description {
+    text-align: center;
+    color: #687587;
+    margin-bottom: 25px;
+}
+
+form label {
+    display: block;
+    margin: 16px 0 8px;
+    font-weight: bold;
+}
+
+form input:not([type="checkbox"]),
+form select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd4df;
+    border-radius: 7px;
+    font-size: 15px;
+    background: white;
+}
+
+form input:focus,
+form select:focus {
+    outline: 2px solid #4b91d1;
+    border-color: #4b91d1;
+}
+
+form .agreement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.agreement input {
+    width: 17px;
+    height: 17px;
+}
+
+form button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    background: #123b68;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #2674a9;
+}
+
+#message {
+    margin-top: 18px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.contact p {
+    margin: 12px;
+}
+
+footer {
+    background: #123b68;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .form-box {
+        padding: 22px;
+    }
+}
+</style>
+<body>
+
+    <header>
+        <div class="logo">🎓 ПОЛИТЕХНИК КОЛЛЕЖ</div>
+        <nav>
+            <a href="#home">Нүүр</a>
+            <a href="#about">Бидний тухай</a>
+            <a href="#register">Бүртгүүлэх</a>
+            <a href="#contact">Холбоо барих</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div>
+            <h1>Тавтай морил!</h1>
+            <h2>Политехник коллеж</h2>
+            <p>Ирээдүйн мэргэжлээ өнөөдөр сонгоорой.</p>
+            <a href="#register" class="main-button">
+                Элсэлтийн бүртгэл
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>Бидний тухай</h2>
+        <p>
+            Политехник коллеж нь суралцагчдад мэргэжлийн мэдлэг,
+            практик ур чадвар эзэмшүүлэх зорилготой.
+            Та өөрийн сонирхсон мэргэжлээ сонгон суралцах боломжтой.
+        </p>
+    </section>
+
+    <section id="register" class="register">
+        <div class="form-box">
+            <h2>Элсэлтийн бүртгэл</h2>
+            <p class="description">
+                Мэдээллээ үнэн зөв бөглөнө үү.
+            </p>
+
+            <form id="registerForm">
+
+                <label for="fullname">Овог, нэр</label>
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Овог, нэрээ бичнэ үү"
+                    required
+                >
+
+                <label for="phone">Холбоо барих утас</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Утасны дугаар"
+                    pattern="[0-9+() -]{8,20}"
+                    required
+                >
+
+                <label for="email">Gmail хаяг</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@gmail.com"
+                    required
+                >
+
+                <label for="birthdate">Төрсөн он, сар, өдөр</label>
+                <input
+                    type="date"
+                    id="birthdate"
+                    required
+                >
+
+                <label for="major">Сонгох мэргэжил</label>
+                <select id="major" required>
+                    <option value="">Мэргэжлээ сонгоно уу</option>
+                    <option value="IT">Мэдээллийн технологи</option>
+                    <option value="Programming">Програм хангамж</option>
+                    <option value="Electrical">Цахилгаан</option>
+                    <option value="Mechanical">Механик</option>
+                    <option value="Construction">Барилга</option>
+                    <option value="Other">Бусад</option>
+                </select>
+
+                <label class="agreement">
+                    <input type="checkbox" id="agree" required>
+                    Миний оруулсан мэдээлэл үнэн зөв.
+                </label>
+
+                <button type="submit">БҮРТГЭЛ ИЛГЭЭХ</button>
+
+                <p id="message" role="status"></p>
+
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Холбоо барих</h2>
+        <p>📍 Байршил: Монгол Улс</p>
+        <p>📞 Утас: Сургуулийн утасны дугаар</p>
+        <p>📧 И-мэйл: Сургуулийн и-мэйл хаяг</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Политехник коллеж</p>
+        <p>Эрдэм мэдлэг — Ирээдүйн амжилт</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("registerForm");
+const message = document.getElementById("message");
+
+const birthdate = document.getElementById("birthdate");
+birthdate.max = new Date().toISOString().split("T")[0];
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const fullname =
+        document.getElementById("fullname").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const major =
+        document.getElementById("major");
+
+    if (!fullname || !phone || !email ||
+        !birthdate.value || !major.value) {
+        message.textContent =
+            "Бүх талбарыг бүрэн бөглөнө үү.";
+        return;
+    }
+
+    if (!document.getElementById("agree").checked) {
+        message.textContent =
+            "Мэдээллийн үнэн зөвийг баталгаажуулна уу.";
+        return;
+    }
+
+    message.textContent =
+        "Амжилттай! " + fullname +
+        ", таны бүртгэлийн мэдээллийг хүлээн авлаа.";
+
+    message.style.color = "green";
+});
+    </script>
+</body>
+</html>
