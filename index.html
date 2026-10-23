@@ -257,12 +257,17 @@ footer {
                 Мэдээллээ үнэн зөв бөглөнө үү.
             </p>
 
-            <form id="registerForm">
+            <form id="registerForm" name="registerForm" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="registerForm">
+                <p hidden>
+                    <label>Энд бөглөхгүй: <input name="bot-field"></label>
+                </p>
 
                 <label for="fullname">Овог, нэр</label>
                 <input
                     type="text"
                     id="fullname"
+                    name="fullname"
                     placeholder="Овог, нэрээ бичнэ үү"
                     required
                 >
@@ -271,6 +276,7 @@ footer {
                 <input
                     type="tel"
                     id="phone"
+                    name="phone"
                     placeholder="Утасны дугаар"
                     pattern="[0-9+() -]{8,20}"
                     required
@@ -280,6 +286,7 @@ footer {
                 <input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="example@gmail.com"
                     required
                 >
@@ -288,11 +295,12 @@ footer {
                 <input
                     type="date"
                     id="birthdate"
+                    name="birthdate"
                     required
                 >
 
                 <label for="major">Сонгох мэргэжил</label>
-                <select id="major" required>
+                <select id="major" name="major" required>
                     <option value="">Мэргэжлээ сонгоно уу</option>
                     <option value="IT">Мэдээллийн технологи</option>
                     <option value="Programming">Програм хангамж</option>
@@ -303,7 +311,7 @@ footer {
                 </select>
 
                 <label class="agreement">
-                    <input type="checkbox" id="agree" required>
+                    <input type="checkbox" id="agree" name="agree" value="Тийм" required>
                     Миний оруулсан мэдээлэл үнэн зөв.
                 </label>
 
@@ -334,39 +342,60 @@ const message = document.getElementById("message");
 const birthdate = document.getElementById("birthdate");
 birthdate.max = new Date().toISOString().split("T")[0];
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const fullname =
-        document.getElementById("fullname").value.trim();
+    const fullname = document.getElementById("fullname").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const major = document.getElementById("major");
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    const phone =
-        document.getElementById("phone").value.trim();
+    message.style.color = "red";
 
-    const email =
-        document.getElementById("email").value.trim();
-
-    const major =
-        document.getElementById("major");
-
-    if (!fullname || !phone || !email ||
-        !birthdate.value || !major.value) {
-        message.textContent =
-            "Бүх талбарыг бүрэн бөглөнө үү.";
+    if (!fullname || !phone || !email || !birthdate.value || !major.value) {
+        message.textContent = "Бүх талбарыг бүрэн бөглөнө үү.";
         return;
     }
 
     if (!document.getElementById("agree").checked) {
-        message.textContent =
-            "Мэдээллийн үнэн зөвийг баталгаажуулна уу.";
+        message.textContent = "Мэдээллийн үнэн зөвийг баталгаажуулна уу.";
         return;
     }
 
-    message.textContent =
-        "Амжилттай! " + fullname +
-        ", таны бүртгэлийн мэдээллийг хүлээн авлаа.";
+    // Netlify Forms руу илгээх өгөгдөл
+    const formData = new FormData(form);
+    formData.set("form-name", "registerForm");
 
-    message.style.color = "green";
+    submitButton.disabled = true;
+    submitButton.textContent = "Илгээж байна...";
+    message.textContent = "Бүртгэлийг илгээж байна...";
+
+    try {
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams(formData).toString()
+        });
+
+        if (!response.ok) {
+            throw new Error("Илгээлт амжилтгүй боллоо. HTTP " + response.status);
+        }
+
+        message.style.color = "green";
+        message.textContent = "Амжилттай! " + fullname +
+            ", таны бүртгэлийн мэдээлэл Netlify-д илгээгдлээ.";
+        form.reset();
+    } catch (error) {
+        message.style.color = "red";
+        message.textContent = "Алдаа: Бүртгэл илгээгдсэнгүй. Интернэт холболтоо шалгаад дахин оролдоно уу.";
+        console.error("Netlify form submission error:", error);
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "БҮРТГЭЛ ИЛГЭЭХ";
+    }
 });
     </script>
 </body>
